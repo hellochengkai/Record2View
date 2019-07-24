@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.thunder.ktv.record2view.MainViewModel" />
+
+        <variable
+            name="handler"
+            type="com.thunder.ktv.record2view.OnClickListenerHandler" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <SurfaceView
+            android:id="@+id/video_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+            <!--录音-->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <include
+                    android:id="@+id/record_view"
+                    layout="@layout/record_layout"
+                    bind:handler="@{handler}"
+                    bind:viewModel="@{viewModel}" />
+            </FrameLayout>
+        </RelativeLayout>
+    </FrameLayout>
+</layout>

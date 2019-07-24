@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout   xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.thunder.ktv.record2view.MainViewModel" />
+
+        <variable
+            name="handler"
+            type="com.thunder.ktv.record2view.OnClickListenerHandler" />
+    </data>
+
+    <FrameLayout
+        android:background="#300000f0"
+        android:layout_width="940dp"
+        android:layout_height="250dp">
+        <com.thunder.ktv.record2view.view.SineWavesView
+            android:id="@+id/sineWavesView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.recordOpen?View.VISIBLE:View.GONE}" />
+        <Switch
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="10px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onCheckedChanged="@{handler::switchRecord}"
+            android:text="@string/record_txt"
+            android:textOff=""
+            android:textOn=""
+            android:textSize="20dp"
+            android:thumb="@drawable/switch_custom_thumb_selector"
+            android:track="@drawable/switch_custom_track_selector" />
+    </FrameLayout>
+</layout>
