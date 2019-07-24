@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.thunder.ktv.record2view.databinding.ActivityMainBinding;
@@ -17,6 +18,7 @@ import com.thunder.ktv.record2view.record.AudioRecorder;
 import com.thunder.ktv.record2view.record.RecordOutputStream;
 
 public class MainActivity extends Activity {
+    private static final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     private static Context context;
     MediaPlayer mediaPlayer;
@@ -32,6 +34,10 @@ public class MainActivity extends Activity {
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.sinewave);
         mediaPlayer.setLooping(true);
+        mediaPlayer.setOnCompletionListener(mp -> {
+            mp.start();
+            mp.setLooping(true);
+        });
         binding.videoView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
